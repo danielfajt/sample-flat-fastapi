@@ -1,0 +1,1 @@
+Skeleton of flat microservice application with FastAPI entrypoint.

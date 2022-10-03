@@ -1,0 +1,27 @@
+# GCP Build trigger & GCP Artifact registry has to have same region ($LOCATION).
+# $LOCATION does not work in substitutions
+
+steps:
+  # Build development image
+  - name: "gcr.io/cloud-builders/docker"
+    args: [ 'build', 
+            '-t', '${_IMAGE_DEV}', 
+            '-f', '.devcontainer/Dockerfile.dev', '.' ]
+  
+  # Test in development image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ['run', '${_IMAGE_DEV}', 'python', '-m', 'pytest' ]
+
+  # Build production image
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", '-t', '${LOCATION}-${_IMAGE_PROD}', '-f', 'Dockerfile', '.' ]
+
+  # Push production image to artifact registry repository
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", '${LOCATION}-${_IMAGE_PROD}']
+
+substitutions:
+  _ARTIFACT_REPO: <artifact repository name>
+  _IMAGE_NAME: <net.company.app_name.service>
+  _IMAGE_DEV: ${_IMAGE_NAME}-${BRANCH_NAME}:${SHORT_SHA}
+  _IMAGE_PROD: docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REPO}/${_IMAGE_NAME}-${BRANCH_NAME}:${SHORT_SHA}

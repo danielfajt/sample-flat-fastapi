@@ -1,0 +1,19 @@
+.DS_Store
+.venv
+.env
+.tox
+
+# Python
+*.pyc
+*.egg-info
+__pycache__
+.mypy_cache
+.pytest_cache
+
+# jetbrains
+.idea
+
+# vscode
+/.vscode/*
+!/.vscode/tasks.json
+!/.vscode/launch.json
