@@ -1,14 +1,12 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "RebuildAndReopenInContainer",
+            "label": "dev: Rebuild and open in container",
             "command": "${command:remote-containers.rebuildAndReopenInContainer}"
         },
         {
-            "label": "reopenInContainer",
+            "label": "dev: Reopen in container",
             "command": "${command:remote-containers.reopenInContainer}"
         },
         {
@@ -26,5 +24,15 @@
             },
             "problemMatcher": [],
         },
+        {
+            "label": "Build image",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/scripts/build_image.py"],
+            "options": {
+              "cwd": "${workspaceFolder}/scripts/"
+            }
+            
+        }
     ],
 }
