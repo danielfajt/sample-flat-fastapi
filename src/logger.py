@@ -1,7 +1,7 @@
 import logging
 
 from config import get_config
-from logger_json_handler import JsonStreamHandler
+from logger_json import JsonStreamHandler
 
 app_config = get_config()
 
@@ -13,7 +13,7 @@ logger = logging.getLogger("app")
 logger.setLevel(LOGGING_LEVEL)
 
 # Logger: Handlers
-logger.addHandler(JsonStreamHandler(app_name=APP_NAME))
+logger.addHandler(JsonStreamHandler())
 
 # Supress logging from other libraries
 logging.getLogger("urllib3").setLevel(logging.ERROR)

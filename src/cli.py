@@ -1,22 +1,11 @@
-import asyncio
-import json
-import logging
-
-import typer
-
-logger = logging.getLogger("app.cli")
-
-cli = typer.Typer(no_args_is_help=True)
-
-# Run event loop to run commands coroutines with
-loop = asyncio.get_event_loop()
+import click
 
 
-@cli.command(name="hello")
-def get_hello(icao: str) -> None:
-    """Get hello"""
+@click.group()
+def app():
+    """Application CLI"""
 
-    # response = loop.run_until_complete(<coroutine>) >>> async  method from 'controller'
 
-    typer.secho(f'\nHello', fg="green")
-    loop.close()
+@app.command()
+def hello():
+    """Hello world command"""

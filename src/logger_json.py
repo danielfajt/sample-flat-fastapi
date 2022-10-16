@@ -1,8 +1,6 @@
 import sys
 import typing as t
 from logging import LogRecord, StreamHandler
-from webbrowser import get
-
 from config import get_config
 
 app_config = get_config()
