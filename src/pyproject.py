@@ -1,3 +1,3 @@
-__version__ = "0.1.0"
-__name__ = "__some_app__"
-__description__ = "__some_description__"
+__version = "0.1.0"
+__name = "__some_app__"
+__description = "__some_description__"

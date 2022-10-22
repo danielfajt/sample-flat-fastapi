@@ -3,7 +3,7 @@ from functools import lru_cache
 from dotenv import load_dotenv
 from pydantic import BaseSettings
 
-from pyproject import __description__, __name__, __version__
+from pyproject import __description, __name, __version
 
 load_dotenv()
 
@@ -12,9 +12,9 @@ class Settings(BaseSettings):
     """Settings"""
 
     # App
-    app_version: str = __version__
-    app_name: str = __name__
-    app_description: str = __description__
+    app_version: str = __version
+    app_name: str = __name
+    app_description: str = __description
 
     # Logging
     logging_level_stdout: str = "debug"
